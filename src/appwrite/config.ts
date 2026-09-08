@@ -1,5 +1,5 @@
 import conf from '../conf/conf';
-import {Client,ID,Databases,Account,Storage,Query, TablesDB,} from "appwrite"
+import {Client,ID,Account,Storage,Query, TablesDB,} from "appwrite"
 
 type data = {
     title:string; 
@@ -78,7 +78,7 @@ export class Service {
             );
         }
     }
-    
+
     async deletePost(slug:string){
         try {
             return await this.database.deleteRow({

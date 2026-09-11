@@ -11,8 +11,9 @@ type account = {
 export class AuthService {
     client = new Client()
     account
-
+    
     constructor(){
+        console.log(conf)
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);

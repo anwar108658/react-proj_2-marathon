@@ -93,6 +93,85 @@ export class Service {
             );
         }
     }
+
+    async getPost(slug:string){
+        try {
+            return await this.database.getRow({
+                databaseId: conf.appwriteDatabaseId,
+                tableId: conf.appwriteCollectionId,
+                rowId: slug,
+            });
+        } catch (error) {
+            console.log(
+                "Appwrite service :: getPost :: error",
+                error
+            );
+        }
+    }
+
+    async getPosts(queries = [Query.equal("status", "active")]){
+        try {
+            return await this.database.listRows({
+                databaseId: conf.appwriteDatabaseId,
+                tableId: conf.appwriteCollectionId,
+                queries, 
+            });
+        } catch (error) {
+            console.log(
+                "Appwrite service :: getPosts :: error",
+                error
+            );
+        }
+    }
+
+    // file upload
+    async uploadFile(file:File){
+        try {
+            return await this.bucket.createFile({
+                bucketId: conf.appwriteBucketId,
+                fileId: ID.unique(),
+                file,
+            });
+        }
+        catch (error) {
+            console.log(
+                "Appwrite service :: uploadFile :: error",
+                error
+            );
+        }
+    }
+
+    async deleteFile(fileId:string){
+        try {
+            return await this.bucket.deleteFile({
+                bucketId: conf.appwriteBucketId,
+                fileId,
+            });
+        }
+        catch (error) {
+            console.log(
+                "Appwrite service :: deleteFile :: error",
+                error
+            );
+        }
+    }
+
+    async getFilePreview(fileId:string){
+
+        try {
+            return await this.bucket.getFilePreview({
+                bucketId: conf.appwriteBucketId,
+                fileId,
+            });
+        }
+        catch (error) {
+            console.log(
+                "Appwrite service :: getFilePreview :: error",
+                error
+            );
+        }
+    }
+    
 }
 
 const service = new Service();

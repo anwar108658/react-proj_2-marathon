@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import type { RootState } from "../../store/store";
 import Container from "../container/Container";
 import LogoutBtn from "./LogoutBtn";
+import logo from "../../assets/logo.png";
+import RainbowButton from "../RainbowButton";
 
 const Header = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const authStatus = useSelector((state: RootState) => state.auth.status);
@@ -18,18 +21,18 @@ const Header = () => {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="shadow bg-gray-800 text-white">
       <Container>
         <nav className="flex">
-          <div className="mr-4">
+          <div className=" flex justify-between items-center w-full py-3">
             <Link to={"/"}>
-              logo
+              <img src={logo} width="70" height="50" className="rounded-md" alt="Logo" />
             </Link>
-            <ul className="flex ml-auto">
+            <ul className="flex">
               {navItem.map((item) => 
               item.active ? (
                 <li key={item.slug}>
-                  <button onClick={() => navigate(item.slug)} className="inline-block px-6 py-2 duration-200 rounded-full">{item.name}</button>
+                  <RainbowButton item={item} location={location} onClick={() => navigate(item.slug)}/>
                 </li>
               ) : null
               )}

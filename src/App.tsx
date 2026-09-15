@@ -4,6 +4,7 @@ import authService from "./appwrite/auth"
 import { login,logout } from "./store/authSlice"
 import { Footer, Header } from "./components"
 import { Outlet } from "react-router-dom"
+import logo from "./assets/logo.png"
 
 function App() {
   const [loading,setLoading] = useState(true)
@@ -28,16 +29,20 @@ function App() {
         <div className="w-full block">
           <Header/>
           <main>
-            {/* <Outlet/> */}
+            <Outlet/>
           </main>
           <Footer/>
         </div>
       </div>
     )
   }
-
+  // loading state
   return (
-    <h1>Loading</h1>
+    <div className="flex items-center justify-center h-screen">
+      <div className="absolute animate-ping rounded-full h-29 w-29 border-t-2 border-b-2 border-blue-500">
+      </div>
+      <img src={logo} alt="Logo" width={100} height={70} className="right-200 rounded-md" />
+    </div>
   )
 }
 

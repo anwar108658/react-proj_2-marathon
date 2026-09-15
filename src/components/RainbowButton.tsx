@@ -26,7 +26,7 @@ export default function RainbowButton({
         setShowRainbow(false);
         setMoveRainbow(false);
       }}
-      className={`hover:text-green-400 ${item.slug === location.pathname ? "text-blue-400" : "text-white"} relative overflow-hidden cursor-pointer rounded-xl px-4 py-2 `}
+      className={`hover:text-green-400 ${item.slug === location.pathname ? "text-blue-400" : "text-white"} relative duration-200 overflow-hidden cursor-pointer rounded-md px-4 py-2 `}
       {...props}
     >
       {showRainbow && item.slug === location.pathname && (
